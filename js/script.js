@@ -1,6 +1,4 @@
-
-//Global variables
-//**form stuff**
+//**FORM - FIRST FIELD FOCUS**
 const focusFirstField = document.querySelector('input[type=text]');
 const jobList = document.getElementById('title');
 const input = document.getElementById('other-title');
@@ -19,7 +17,7 @@ jobList.addEventListener('change', (e) => {
     }
 });
 
-//**Shirt stuff**   student github: hjairo
+//**SHIRT DESIGN**   student github: hjairo
 const shirtColor = document.getElementById('color');
 const shirtColorDiv = document.getElementById('colors-js-puns');
 const shirtDesign = document.getElementById('design');
@@ -55,9 +53,9 @@ firstIndex.hidden = true;
         };
     });
 
-    //***Activity***
+    //***ACTIVITY SECTION***
     const activityInput = document.querySelectorAll('.activities input');
-    const activityMain = document.querySelectorAll('.activities');
+    const activityMain = document.querySelector('.activities');
     let total = 0; //the initial cost if attending 0 activities
     const totalText = document.createElement('h3');
     totalText.innerHTML = 'Total: 0';
@@ -72,7 +70,7 @@ firstIndex.hidden = true;
         let price = parseInt(clicked.getAttribute('data-cost'));
 
         for (let i = 0; i < activityInput.length; i++) {
-            //This variable target all of the attribute in the loop
+            //This variable targets ALL of the attributes in the loop
             const time = activityInput[i].getAttribute('data-day-and-time'); 
             if (clicked.checked) {
             //Here I'm comparing the attribute that has been clicked to all the attributes that have been looped over
@@ -89,6 +87,60 @@ firstIndex.hidden = true;
         } else {
             total = total - price;
         }
-        totalText.textContent = `Total: $${totalCostValue}`;
+        totalText.textContent = `Total: $${total}`;
 
     });
+
+    //***PAYMENT SECTION*** 
+
+    const payment = document.querySelector('#payment');
+    const creditCard = document.querySelector('#credit-card');
+    const selectPay = payment.value = 'select method';
+    const card = payment.value = 'credit card';
+    const payPal = document.querySelector('#paypal');
+    const bitCoin = document.querySelector('#bitcoin');
+    //Card is selected by default and other payment methods are hidden
+    selectPay.hidden = true;
+    card.selected = true;
+    payPal.hidden = true;
+    bitCoin.hidden = true;
+
+    
+    //Getting the value and using if/else to hide the information from the payment types that are NOT selected
+    payment.addEventListener('change', (e) => {
+        const type = e.target.value; 
+        if (type === 'credit card') {
+            creditCard.style.display = 'block';
+            payPal.style.display = 'none';
+            bitCoin.style.display = 'none';
+        } else if (type === 'paypal') {
+            creditCard.style.display = 'none';
+            payPal.style.display = 'block';
+            bitCoin.style.display = 'none';
+        } else {
+            creditCard.style.display = 'none';
+            payPal.style.display = 'none';
+            bitCoin.style.display = 'block';
+        }
+});
+
+//***VALIDATION***
+const name = document.getElementById('name');
+const nameLabel = document.querySelector('label[for="name"]');
+const nameError = document.createElement('h4');
+nameError.innerHTML = 'Please enter your name';
+nameError.style.color = 'red';
+nameError.hidden = true;
+nameLabel.appendChild(nameError);
+
+const nameValidation = () => {
+    if (name.length === 0) {
+        nameError.hidden = false;
+    } else {
+        nameError.hidden = true;
+    }
+}
+
+name.addEventListener('keyup', nameValidation);
+
+
