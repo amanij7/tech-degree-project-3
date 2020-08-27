@@ -125,22 +125,194 @@ firstIndex.hidden = true;
 });
 
 //***VALIDATION***
+//NAME
 const name = document.getElementById('name');
 const nameLabel = document.querySelector('label[for="name"]');
 const nameError = document.createElement('h4');
+
+name.placeholder = 'John Smith';
 nameError.innerHTML = 'Please enter your name';
 nameError.style.color = 'red';
 nameError.hidden = true;
 nameLabel.appendChild(nameError);
 
 const nameValidation = () => {
-    if (name.length === 0) {
+    if (!name.value) {
         nameError.hidden = false;
+        return false;
     } else {
         nameError.hidden = true;
+        return true;
     }
 }
 
 name.addEventListener('keyup', nameValidation);
+
+
+//EMAIL
+const email = document.getElementById('mail');
+const emailLabel = document.querySelector('label[for="mail"]')
+const emailError = document.createElement('h4');
+
+email.placeholder = 'name123@email.com';
+emailError.innerHTML = 'Please enter a valid email';
+emailError.hidden = true;
+emailError.style.color = 'red';
+emailLabel.appendChild(emailError);
+
+const emailValidation = () => {
+    const emailRegex = /^[^@]+@[^@.]+\.[a-z]+$/i;
+    if (!email.value) {
+        emailError.hidden = false;
+        return false;
+    } else if (emailRegex.test(email.value) === false) {
+        emailError.hidden = false;
+        return false;
+    } else {
+        emailError.hidden = true;
+        return true;
+    }
+}
+email.addEventListener('keyup', emailValidation);
+
+//ACTIVITY
+const activityLabel = document.querySelector('.activities legend');
+const activityError = document.createElement('h5');
+
+activityError.style.color = 'red';
+activityError.innerHTML = 'Please select at least one activity';
+activityError.hidden = false;
+activityLabel.appendChild(activityError);
+
+const activityValidation = () => {
+    for (i = 0; i < activityInput.length; i++) {
+        if (activityInput[i].checked) {
+           checked = checked + 1;
+        } 
+    if (activityInput[i].checked) {
+        activityError.hidden = true;
+        return true;
+    } else {
+        activityError.hidden = false;
+        return false;;
+    }
+  }
+}
+activityMain.addEventListener('click', activityValidation);
+
+
+//CARD
+
+const cardDiv = document.querySelector('#credit-card').children[0];
+const cardInput = document.getElementById('cc-num');
+const cardError = document.createElement('h4');
+
+cardError.innerHTML = 'Please enter a credit card number between 13 and 16 digits';
+cardError.style.color = 'red';
+cardError.hidden = true;
+cardDiv.appendChild(cardError);
+
+const cardValidation = () => {
+    let cardRegex = /^\d{13,16}$/;
+
+    if(!cardInput.value) {
+        cardError.hidden = true;
+        return false;
+    } else if (cardInput.value > 0 && cardRegex.test(cardInput.value) === false ) {
+        cardError.hidden = false;
+        return false;
+    } else {
+        cardError.hidden = true;
+        return true;
+    }
+
+}
+cardInput.addEventListener('keyup', cardValidation);
+
+//ZIP CODE
+const zipCodeDiv = document.querySelector('#credit-card').children[1];
+const zipCode = document.getElementById('zip');
+const zipCodeLabel = document.querySelector('.zip label');
+const zipError = document.createElement('h4');
+
+zipError.style.color = 'red';
+zipError.innerHTML = 'Please enter a 5 digit zip code';
+zipError.hidden = true;
+zipCodeDiv.appendChild(zipError);
+
+const zipValidation = () => {
+    const zipRegex = /^\d{5}$/;
+
+    if (!zipCode.value) {
+        zipError.hidden = true;
+        return false; 
+    } else if (zipCode.value > 0 && zipRegex.test(zipCode.value) === false) {
+        zipError.hidden = false;
+        return false;
+    } else {
+        zipError.hidden = true;
+        return true;
+    }
+}
+
+zipCode.addEventListener('keyup', zipValidation);
+
+//CVV
+
+const cvv = document.querySelector('#credit-card').children[2];
+const cvvInput = document.getElementById('cvv');
+const cvvError = document.createElement('h4');
+
+cvvError.innerHTML = 'Please enter 3 digit cvv number';
+cvvError.style.color = 'red';
+cvvError.hidden = true;
+cvv.appendChild(cvvError);
+
+const cvvValidation = () => {
+    let cvvRegex = /^\d{3}$/;
+    //const cvvValue = cvvInput.value;
+
+    if(!cvvInput.value) {
+        cvvError.hidden = true;
+        return false;
+    } else if(cvvInput.value > 0 && cvvRegex.test(cvvInput.value) === false ) {
+        cvvError.hidden = false;
+        return false;
+    } else {
+        cvvError.hidden = true;
+        return true;
+    }
+}
+
+cvvInput.addEventListener('keyup', cvvValidation);
+
+//***SUBMIT HANDLER***
+
+const submitForm = document.querySelector('form');
+
+submitForm.addEventListener('submit', (e) => {
+    if (!nameValidation()) {
+        e.preventDefault();
+    }
+    if (!emailValidation()) {
+        e.preventDefault();
+    }
+    if (!activityValidation()) {
+        e.preventDefault;
+    }
+    if (payment.value === 'credit card') {
+        e.preventDefault();
+        //cardError.innerHTML = 'Please enter a credit card number between 13 and 16 digits';
+    }
+    if (!zipValidation()) {
+        e.preventDefault();
+        //zipError.innerHTML = 'Please enter a 5 digit zip code';
+    }
+    if (!cvvValidation()) {
+        e.preventDefault();
+        //cvvError.innerHTML = 'Please enter 3 digit cvv number';
+    }
+});
+
 
 
