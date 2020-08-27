@@ -72,10 +72,10 @@ firstIndex.hidden = true;
         for (let i = 0; i < activityInput.length; i++) {
             //This variable targets ALL of the attributes in the loop
             const time = activityInput[i].getAttribute('data-day-and-time'); 
-            if (clicked.checked) {
+            if (timeSelected  === time && clicked !== activityInput[i]) {
             //Here I'm comparing the attribute that has been clicked to all the attributes that have been looped over
             //If the attribute results are equal, the equevalent day/time that has NOT been checked will be disabled
-            if (timeSelected  === time && clicked !== activityInput[i]) {     
+            if (clicked.checked) {     
             activityInput[i].disabled = true;
           } else {
             activityInput[i].disabled = false;
@@ -99,11 +99,14 @@ firstIndex.hidden = true;
     const card = payment.value = 'credit card';
     const payPal = document.querySelector('#paypal');
     const bitCoin = document.querySelector('#bitcoin');
+    const selectPayment = payment[0];
+
     //Card is selected by default and other payment methods are hidden
     selectPay.hidden = true;
     card.selected = true;
     payPal.hidden = true;
     bitCoin.hidden = true;
+    selectPayment.hidden = true;
 
     
     //Getting the value and using if/else to hide the information from the payment types that are NOT selected
@@ -185,7 +188,7 @@ const activityError = document.createElement('h5');
 //style and append error message
 activityError.style.color = 'red';
 activityError.innerHTML = 'Please select at least one activity';
-activityError.hidden = false;
+activityError.hidden = true;
 activityLabel.appendChild(activityError);
 // this function is to loop over the check list to see if or not anything is checked
 const activityValidation = () => {
@@ -292,9 +295,9 @@ cvvInput.addEventListener('keyup', cvvValidation);
 
 //***SUBMIT HANDLER***
 
-const button = document.querySelector('button');
+const form = document.querySelector('form');
 
-button.addEventListener('submit', (e) => {
+form.addEventListener('submit', (e) => {
     if (!nameValidation()) {
         e.preventDefault();
     }
@@ -304,19 +307,13 @@ button.addEventListener('submit', (e) => {
     if (!activityValidation()) {
         e.preventDefault;
     }
-    if (payment.value === 'credit card') {
-        e.preventDefault();
-        //cardError.innerHTML = 'Please enter a credit card number between 13 and 16 digits';
-    }
-    if (!zipValidation()) {
-        e.preventDefault();
-        //zipError.innerHTML = 'Please enter a 5 digit zip code';
-    }
-    if (!cvvValidation()) {
-        e.preventDefault();
-        //cvvError.innerHTML = 'Please enter 3 digit cvv number';
+    if (!cardValidation()) {
+        e.preventDefault;
     }
 });
+
+
+
 
 
 
