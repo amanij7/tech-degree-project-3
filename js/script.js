@@ -129,14 +129,15 @@ firstIndex.hidden = true;
 const name = document.getElementById('name');
 const nameLabel = document.querySelector('label[for="name"]');
 const nameError = document.createElement('h4');
-
+//style and append error message
 name.placeholder = 'John Smith';
 nameError.innerHTML = 'Please enter your name';
 nameError.style.color = 'red';
 nameError.hidden = true;
 nameLabel.appendChild(nameError);
-
+//This function and conditional checks if the or not a name is entered and hides the message based on the returnes true or false values
 const nameValidation = () => {
+    //if a value is entered and deleted, an error message will appear
     if (!name.value) {
         nameError.hidden = false;
         return false;
@@ -145,7 +146,7 @@ const nameValidation = () => {
         return true;
     }
 }
-
+//The event listener is listening for the keyup event on the nameValidation variable
 name.addEventListener('keyup', nameValidation);
 
 
@@ -153,15 +154,17 @@ name.addEventListener('keyup', nameValidation);
 const email = document.getElementById('mail');
 const emailLabel = document.querySelector('label[for="mail"]')
 const emailError = document.createElement('h4');
-
+//style and append error message
 email.placeholder = 'name123@email.com';
 emailError.innerHTML = 'Please enter a valid email';
 emailError.hidden = true;
 emailError.style.color = 'red';
 emailLabel.appendChild(emailError);
-
+//This function and conditional compares the values entered using regex. It the values matches the regex code, it will return true
 const emailValidation = () => {
     const emailRegex = /^[^@]+@[^@.]+\.[a-z]+$/i;
+    //once a value is entered, the error message will appear until the value is in the proper format
+    //if a value is entered and deleted, an error message will appear
     if (!email.value) {
         emailError.hidden = false;
         return false;
@@ -173,22 +176,22 @@ const emailValidation = () => {
         return true;
     }
 }
+//The event listener is listening for the keyup event on the emailValidation variable
 email.addEventListener('keyup', emailValidation);
 
 //ACTIVITY
 const activityLabel = document.querySelector('.activities legend');
 const activityError = document.createElement('h5');
-
+//style and append error message
 activityError.style.color = 'red';
 activityError.innerHTML = 'Please select at least one activity';
 activityError.hidden = false;
 activityLabel.appendChild(activityError);
-
+// this function is to loop over the check list to see if or not anything is checked
 const activityValidation = () => {
+   
     for (i = 0; i < activityInput.length; i++) {
-        if (activityInput[i].checked) {
-           checked = checked + 1;
-        } 
+    //If one activity is checked, the message should disappear
     if (activityInput[i].checked) {
         activityError.hidden = true;
         return true;
@@ -198,6 +201,7 @@ const activityValidation = () => {
     }
   }
 }
+//The event listener is listening for the keyup event on the activityValidation variable
 activityMain.addEventListener('click', activityValidation);
 
 
@@ -206,15 +210,15 @@ activityMain.addEventListener('click', activityValidation);
 const cardDiv = document.querySelector('#credit-card').children[0];
 const cardInput = document.getElementById('cc-num');
 const cardError = document.createElement('h4');
-
+//style and append error message
 cardError.innerHTML = 'Please enter a credit card number between 13 and 16 digits';
 cardError.style.color = 'red';
 cardError.hidden = true;
 cardDiv.appendChild(cardError);
-
+//This function and conditional compares the values entered using regex. It the values matches the regex code, it will return true
 const cardValidation = () => {
     let cardRegex = /^\d{13,16}$/;
-
+//The conditional checkes the values and hides the error message if returned true
     if(!cardInput.value) {
         cardError.hidden = true;
         return false;
@@ -227,6 +231,7 @@ const cardValidation = () => {
     }
 
 }
+//The event listener is listening for the keyup event on the cardValidation variable
 cardInput.addEventListener('keyup', cardValidation);
 
 //ZIP CODE
@@ -234,15 +239,15 @@ const zipCodeDiv = document.querySelector('#credit-card').children[1];
 const zipCode = document.getElementById('zip');
 const zipCodeLabel = document.querySelector('.zip label');
 const zipError = document.createElement('h4');
-
+//style and append error message
 zipError.style.color = 'red';
 zipError.innerHTML = 'Please enter a 5 digit zip code';
 zipError.hidden = true;
 zipCodeDiv.appendChild(zipError);
-
+//This function and conditional compares the values entered using regex. It the values matches the regex code, it will return true
 const zipValidation = () => {
     const zipRegex = /^\d{5}$/;
-
+//The conditional checkes the values and hides the error message if returned true
     if (!zipCode.value) {
         zipError.hidden = true;
         return false; 
@@ -254,7 +259,7 @@ const zipValidation = () => {
         return true;
     }
 }
-
+//The event listener is listening for the keyup event on the zipValidation variable
 zipCode.addEventListener('keyup', zipValidation);
 
 //CVV
@@ -262,15 +267,14 @@ zipCode.addEventListener('keyup', zipValidation);
 const cvv = document.querySelector('#credit-card').children[2];
 const cvvInput = document.getElementById('cvv');
 const cvvError = document.createElement('h4');
-
+//style and append error message
 cvvError.innerHTML = 'Please enter 3 digit cvv number';
 cvvError.style.color = 'red';
 cvvError.hidden = true;
 cvv.appendChild(cvvError);
-
+//This function and conditional compares the values entered using regex. It the values matches the regex code, it will return true
 const cvvValidation = () => {
     let cvvRegex = /^\d{3}$/;
-    //const cvvValue = cvvInput.value;
 
     if(!cvvInput.value) {
         cvvError.hidden = true;
@@ -283,7 +287,7 @@ const cvvValidation = () => {
         return true;
     }
 }
-
+//The event listener is listening for the keyup event on the cvvValidation variable
 cvvInput.addEventListener('keyup', cvvValidation);
 
 //***SUBMIT HANDLER***
