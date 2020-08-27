@@ -288,9 +288,9 @@ cvvInput.addEventListener('keyup', cvvValidation);
 
 //***SUBMIT HANDLER***
 
-const submitForm = document.querySelector('form');
+const button = document.querySelector('button');
 
-submitForm.addEventListener('submit', (e) => {
+button.addEventListener('submit', (e) => {
     if (!nameValidation()) {
         e.preventDefault();
     }
