@@ -304,8 +304,9 @@ cvvInput.addEventListener('keyup', cvvValidation);
 //***SUBMIT HANDLER***
 
 const form = document.querySelector('form');
-
+//adding an event listener on the for element
 form.addEventListener('submit', (e) => {
+    //Uses the condition to prevent the default action if anything is incomplete
     if (!nameValidation()) {
         e.preventDefault();
     }
@@ -315,7 +316,7 @@ form.addEventListener('submit', (e) => {
     if (!activityValidation()) {
         e.preventDefault();
     }
-    
+    //The only way I would get the payment error messages to show up when submitting is by comparing the condition in the event handler
     if (payment.value === 'credit card') {
         if (!cardValidation()) {
             e.preventDefault();
