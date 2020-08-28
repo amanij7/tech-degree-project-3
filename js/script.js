@@ -17,18 +17,26 @@ jobList.addEventListener('change', (e) => {
     }
 });
 
-//**SHIRT DESIGN**   student github: hjairo
+//**SHIRT DESIGN**  
 const shirtColor = document.getElementById('color');
+const colorLabel = document.querySelector('label[for="color"]');
 const shirtColorDiv = document.getElementById('colors-js-puns');
 const shirtDesign = document.getElementById('design');
 const option = shirtColor.options;
 const firstIndex = shirtDesign[0];
+
+const colorMessage = document.createElement('h4');
+colorMessage.innerHTML = 'Please select a T-shirt theme';
+colorMessage.style.color = 'blue';
+colorLabel.appendChild(colorMessage);
 //booleans 
+colorMessage.hidden = false;
 shirtColor.hidden = true;
 firstIndex.selected = true;
 firstIndex.hidden = true;
 //shirt design event listner
     shirtDesign.addEventListener('change', () => {
+        colorMessage.hidden = true;
         shirtColor.hidden = false;//no longer hides once design is selected
         //loops through the color options and selects the specified indexes based on the design chosen
         for (i = 0; i < shirtColor.length; i++ ) {
@@ -308,14 +316,17 @@ form.addEventListener('submit', (e) => {
         e.preventDefault();
     }
     
-    if (cardInput.value === 'credit card') {
+    if (payment.value === 'credit card') {
         if (!cardValidation()) {
             e.preventDefault();
             cardError.hidden = false;
+            zipError.hidden = false;
+            cvvError.hidden = false;
             return false;
     }
 }
 });
+
 
 
 
