@@ -305,11 +305,16 @@ form.addEventListener('submit', (e) => {
         e.preventDefault();
     }
     if (!activityValidation()) {
-        e.preventDefault;
+        e.preventDefault();
     }
-    if (!cardValidation()) {
-        e.preventDefault;
+    
+    if (cardInput.value === 'credit card') {
+        if (!cardValidation()) {
+            e.preventDefault();
+            cardError.hidden = false;
+            return false;
     }
+}
 });
 
 
