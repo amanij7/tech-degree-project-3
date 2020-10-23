@@ -200,18 +200,25 @@ activityError.hidden = true;
 activityLabel.appendChild(activityError);
 // this function is to loop over the check list to see if or not anything is checked
 const activityValidation = () => {
+    
+    let activitiesChecked = 0;
    
     for (i = 0; i < activityInput.length; i++) {
-    //If one activity is checked, the message should disappear
+    
     if (activityInput[i].checked) {
+        activitiesChecked += 1;
+    }
+}
+//Message will appear is no activity is selected
+    if (activitiesChecked > 0) {
         activityError.hidden = true;
         return true;
-    } else {
+    } else if (activitiesChecked === 0) {
         activityError.hidden = false;
-        return false;;
+        return false;
     }
-  }
-}
+    }
+ 
 //The event listener is listening for the keyup event on the activityValidation variable
 activityMain.addEventListener('click', activityValidation);
 
@@ -325,6 +332,20 @@ form.addEventListener('submit', (e) => {
             cvvError.hidden = false;
             return false;
     }
+        if (!zipValidation()) {
+            e.preventDefault();
+            cardError.hidden = false;
+            zipError.hidden = false;
+            cvvError.hidden = false;
+            return false;
+    }
+        if (!cvvValidation()) {
+            e.preventDefault();
+            cardError.hidden = false;
+            zipError.hidden = false;
+            cvvError.hidden = false;
+            return false;
+        }
 }
 });
 
