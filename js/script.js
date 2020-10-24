@@ -328,23 +328,14 @@ form.addEventListener('submit', (e) => {
         if (!cardValidation()) {
             e.preventDefault();
             cardError.hidden = false;
-            //zipError.hidden = false;
-            //cvvError.hidden = false;
-            return false;
     }
         if (!zipValidation()) {
             e.preventDefault();
-            //cardError.hidden = false;
             zipError.hidden = false;
-            //cvvError.hidden = false;
-            return false;
     }
         if (!cvvValidation()) {
             e.preventDefault();
-            //cardError.hidden = false;
-            //zipError.hidden = false;
             cvvError.hidden = false;
-            return false;
         }
 }
 });
