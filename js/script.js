@@ -240,7 +240,7 @@ const cardValidation = () => {
     if(!cardInput.value) {
         cardError.hidden = true;
         return false;
-    } else if (cardInput.value > 0 && cardRegex.test(cardInput.value) === false ) {
+    } else if (cardRegex.test(cardInput.value) === false ) {
         cardError.hidden = false;
         return false;
     } else {
@@ -269,7 +269,7 @@ const zipValidation = () => {
     if (!zipCode.value) {
         zipError.hidden = true;
         return false; 
-    } else if (zipCode.value > 0 && zipRegex.test(zipCode.value) === false) {
+    } else if (zipRegex.test(zipCode.value) === false) {
         zipError.hidden = false;
         return false;
     } else {
@@ -297,7 +297,7 @@ const cvvValidation = () => {
     if(!cvvInput.value) {
         cvvError.hidden = true;
         return false;
-    } else if(cvvInput.value > 0 && cvvRegex.test(cvvInput.value) === false ) {
+    } else if(cvvRegex.test(cvvInput.value) === false ) {
         cvvError.hidden = false;
         return false;
     } else {
